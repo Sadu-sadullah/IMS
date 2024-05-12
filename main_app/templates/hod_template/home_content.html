@@ -1,0 +1,397 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+{% block title %}{{page_title}}{% endblock %}
+{% block content %}
+<section class="content">
+    <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>{{total_interns}}</h3>
+
+                        <p>Total Interns</p>
+                    </div>
+                    <div class="icon">
+                      <i class="nav-icon fas fa-user-graduate"></i>
+                    </div>
+                    <a href="{% url 'manage_intern' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3>{{total_staff}}</h3>
+
+                        <p>Total Staffs</p>
+                    </div>
+                    <div class="icon">
+                      <i class="nav-icon fas fa-users"></i>
+                    </div>
+                    <a href="{% url 'manage_staff' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-purple">
+                    <div class="inner">
+                        <h3>{{total_department}}</h3>
+
+                        <p>Total Departments</p>
+                    </div>
+                    <div class="icon">
+                      <i class="nav-icon fas fa-building"></i>
+                    </div>
+                    <a href="{% url 'manage_department' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h3>{{total_task}}</h3>
+
+                        <p>Total Tasks</p>
+                    </div>
+                    <div class="icon">
+                      <i class="nav-icon fas fa-tasks"></i>
+                    </div>
+                    <a href="{% url 'manage_task' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+        </div>
+        <!-- /.row -->
+        <!-- Main row -->
+        <div class="row">
+            <div class="col-md-6">
+                <!-- LINE CHART -->
+                <div class="card card-dark">
+                  <div class="card-header">
+                    <h3 class="card-title">Staffs - Interns Overview</h3>
+    
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                      </button>
+                      <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="chart">
+                      <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                    </div>
+                  </div></div>
+                  <!-- /.card-body -->
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-dark">
+              <div class="card-header">
+                <h3 class="card-title">Intern & Tasks</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="chart">
+                  <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+                </div>
+            <!-- right col -->
+        </div>
+        <!-- /.row (main row) -->
+        <div class="row">
+          <div class="col-lg-12">
+            <!-- BAR CHART -->
+            <div class="card card-dark">
+              <div class="card-header">
+                <h3 class="card-title">Intern's Attendance & Leave Overview</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="chart">
+                  <canvas id="barChart2" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+
+
+          <div class="col-lg-6">
+            
+          </div>
+        
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-6">
+            <!-- PIE CHART -->
+            <div class="card card-dark">
+              <div class="card-header">
+                <h3 class="card-title">Total Interns in Each Department</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+              <div class="card-body">
+                <canvas id="pieChart2" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+              </div>
+              <!-- /.card-body -->
+              </div>
+          </div>
+
+          <div class="col-lg-6">
+            <!-- PIE CHART -->
+            <div class="card card-dark">
+              <div class="card-header">
+                <h3 class="card-title">Total Tasks for Each Intern</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+              <div class="card-body">
+                <canvas id="pieChart3" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+              </div>
+              <!-- /.card-body -->
+          </div>
+          </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+{% endblock content %}
+
+{% block custom_js %}
+  <script>
+      $(document).ready(function(){
+        var donutData        = {
+            labels: ['Interns', 'Staff'],
+            datasets: [
+              {
+                data:[{{total_interns}}, {{total_staff}}],
+                backgroundColor : ['#00a65a', '#f39c12',],
+              }
+            ]
+          }
+        var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+        var pieData        = donutData;
+        var pieOptions     = {
+          maintainAspectRatio : false,
+          responsive : true,
+        }
+        //Create pie or douhnut chart
+        // You can switch between pie and douhnut using the method below.
+        var pieChart = new Chart(pieChartCanvas, {
+          type: 'pie',
+          data: pieData,
+          options: pieOptions      
+        });
+        
+        // To change!
+        var intern_name_list = {{ intern_name_list|safe }};
+        var intern_task_count_list = {{ intern_task_count_list|safe }}
+        var completed_task_count_list = {{ completed_task_count_list }}
+        var attendance_list = {{ attendance_list }};
+  
+        var barChartData = {
+          labels: intern_name_list,
+          datasets: [
+            {
+              label: 'Total Tasks ',
+              backgroundColor: '#17A2B8',
+              borderColor: 'rgba(60,141,188,0.8)',
+              data: []
+            },
+            {
+              label: 'Completed Tasks',
+              backgroundColor: '#28a745',
+              borderColor: 'rgba(40,167,69,0.8)',
+              data: []
+            }
+          ]
+        };
+
+          intern_name_list.forEach(function(intern_name, index) {
+          barChartData.datasets[0].data.push(intern_task_count_list[index+1])
+          barChartData.datasets[1].data.push(completed_task_count_list[index+1])
+        });
+
+
+        var barChartCanvas = $('#barChart').get(0).getContext('2d');
+      var stackedBarChartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: {
+            stacked: true,
+            ticks: {
+              min: 0, // Set minimum Y-axis value to 0 to ensure all bars are visible
+              beginAtZero: true,
+            }
+          },
+          x: {
+            stacked: true
+          }
+        },
+        barWidth: 0.6, // Increase bar width to improve visibility for small values
+        // ... other options
+      };
+      Chart.scaleService.updateScaleDefaults('linear', {
+        ticks: {
+            min: 0
+        }
+    });
+    
+        var barChart = new Chart(barChartCanvas, {
+          type: 'bar', 
+          data: barChartData,
+          options: stackedBarChartOptions
+        })
+        //Till here
+
+      // Total Interns in Each Task
+      var intern_task_count_list = {{ intern_task_count_list|safe }};
+      var intern_name_list = {{ intern_name_list|safe }};
+
+      var barData = {
+        labels: intern_name_list,  
+        datasets: [{
+          data: Object.values(intern_task_count_list),
+          backgroundColor: [
+            '#8f251f', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc',
+            '#894e9c', '#0b523a', '#a1156d', '#9e4603'
+          ],
+        }]
+      };
+
+      //-------------
+      //- PIE CHART -
+      //-------------
+      // Get context with jQuery - using jQuery's .get() method.
+      var pieChartCanvas3 = $('#pieChart3').get(0).getContext('2d')
+      var pieData3        = pieData3;
+      var pieOptions3     = {
+        maintainAspectRatio : false,
+        responsive : true,
+      }
+
+      var barChart3 = new Chart(pieChartCanvas3, {
+        type: 'pie',  // Change chart type to 'bar'
+        data: barData,
+        options: pieOptions3  // Maintain options for now
+      });      
+
+         //- BAR CHART - Intern Attendance & Leave Overview //
+      var intern_attendance_present_list = {{ intern_attendance_present_list }};
+      var intern_attendance_leave_list = {{ intern_attendance_leave_list }};
+      var intern_name_list = {{ intern_name_list|safe }};
+
+      var areaChartData2 = {
+        labels  : intern_name_list,
+        datasets: [
+          {
+            label               : 'Absent/Leave',
+            backgroundColor     : '#b50a04',
+            borderColor         : '#b50a04',
+            pointRadius          : false,
+            pointColor          : '#3b8bba',
+            pointStrokeColor    : 'rgba(60,141,188,1)',
+            pointHighlightFill  : '#fff',
+            pointHighlightStroke: 'rgba(60,141,188,1)',
+            data                : intern_attendance_leave_list 
+          },
+          {
+            label               : 'Attendance',
+            backgroundColor     : '#5a615c',
+            borderColor         : 'rgba(210, 214, 222, 1)',
+            pointRadius         : false,
+            pointColor          : 'rgba(210, 214, 222, 1)',
+            pointStrokeColor    : '#c1c7d1',
+            pointHighlightFill  : '#fff',
+            pointHighlightStroke: 'rgba(220,220,220,1)',
+            data                : intern_attendance_present_list
+          },
+        ]
+      }
+
+
+      var barChartCanvas2 = $('#barChart2').get(0).getContext('2d')
+      var barChartData2 = jQuery.extend(true, {}, areaChartData2)
+      var temp02 = areaChartData2.datasets[0]
+      var temp12 = areaChartData2.datasets[1]
+      barChartData2.datasets[0] = temp12
+      barChartData2.datasets[1] = temp02
+
+      var barChartOptions2 = {
+        responsive              : true,
+        maintainAspectRatio     : false,
+        datasetFill             : false
+      }
+
+      var barChart2 = new Chart(barChartCanvas2, {
+        type: 'bar', 
+        data: barChartData2,
+        options: barChartOptions2
+      })
+      
+
+      // Total Interns in Each Department
+      //var donutChartCanvas = $('#pieChart2').get(0).getContext('2d')
+      var department_name_list = {{ department_name_list|safe }}
+      var intern_count_list_in_department = {{ intern_count_list_in_department }}
+      var pieData2 = {
+        labels: department_name_list,
+        datasets: [
+          {
+            data: intern_count_list_in_department,
+            backgroundColor : ['#cc0404', '#00a65a', '#f39c12', '#00A4BD', '#045c8f', '#894e9c', '#9e4603', '#71bfb2'],
+          }
+        ]
+      }
+
+      //-------------
+      //- PIE CHART -
+      //-------------
+      // Get context with jQuery - using jQuery's .get() method.
+      var pieChartCanvas2 = $('#pieChart2').get(0).getContext('2d')
+      var pieData2        = pieData2;
+      var pieOptions2     = {
+        maintainAspectRatio : false,
+        responsive : true,
+      }
+
+      var pieChart2 = new Chart(pieChartCanvas2, {
+        type: 'pie',
+        data: pieData2,
+        options: pieOptions2      
+      })
+      
+      
+      })
+  </script>
+{% endblock custom_js %}

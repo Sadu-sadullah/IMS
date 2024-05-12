@@ -1,0 +1,44 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+{% block title %} Update Task {% endblock %}
+
+{% block content %}
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Mark Task Completed</h3>
+          </div>
+          <form action="{% url 'update_tasks' task.id %}" method="post">
+            {% csrf_token %}
+            <div class="card-body">
+              {% if task %}
+              <input type="hidden" name="id" value="{{ task.id }}">
+              <p><strong>Task Name:</strong> {{ task.name }}</p>
+              <p><strong>Description:</strong> {{ task.description }}</p>
+              <div class="form-group">
+                <label for="completed">Mark Completed:</label>
+                <input type="checkbox" id="completed" name="completed" value="True" {% if task.completed %}checked{% endif %}>
+            </div>
+            <div class="form-group">
+                <label for="intern_feedback">Intern Feedback:</label>
+                <textarea name="intern_feedback" id="intern_feedback" rows="4" class="form-control"></textarea>
+            </div>
+              {% else %}
+              <p>Task not found.</p>
+              {% endif %}
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}
