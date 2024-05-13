@@ -380,28 +380,6 @@
                             </li>
 
                             <li class="nav-item">
-                                {% url 'staff_add_result' as staff_add_result %}
-                                <a href="{{staff_add_result}}"
-                                    class="nav-link {% if staff_add_result == request.path %} active {% endif %}">
-                                    <i class="nav-icon fas fa-poll"></i>
-                                    <p>
-                                        Add Result
-
-                                    </p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                {% url 'edit_intern_result' as edit_intern_result %}
-                                <a href="{{edit_intern_result}}"
-                                    class="nav-link {% if edit_intern_result == request.path %} active {% endif %}">
-                                    <i class="nav-icon fas fa-th"></i>
-                                    <p>
-                                        Edit Result
-
-                                    </p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
                                 {% url 'staff_take_attendance' as staff_take_attendance %}
                                 <a href="{{staff_take_attendance}}"
                                     class="nav-link {% if staff_take_attendance == request.path %} active {% endif %}">
