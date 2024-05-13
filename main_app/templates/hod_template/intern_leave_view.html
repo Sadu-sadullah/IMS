@@ -29,7 +29,7 @@
                             {% for leave in  allLeave %}
                               <tr>
                                   <td>{{forloop.counter}}</td>
-                                  <td>{{leave.intern}}</td>
+                                  <td>{{leave.intern.admin.last_name}}, {{leave.intern.admin.first_name}}</td>
                                   <td>{{leave.intern.department}}</td>
                                   <td>{{leave.message}}</td>
                                   <td>{{leave.date}}</td>

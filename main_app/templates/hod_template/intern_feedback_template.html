@@ -19,7 +19,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Intern</th>
-                                <th>Session</th>
+                                <th>Department</th>
                                 <th>Message</th>
                                 <th>Sent On</th>
                                 <th>Replied On</th>
@@ -29,8 +29,8 @@
                             {% for feedback in  feedbacks %}
                               <tr>
                                   <td>{{forloop.counter}}</td>
-                                  <td>{{feedback.intern}}</td>
-                                  <td>{{feedback.intern.session}}</td>
+                                  <td>{{feedback.intern.admin.last_name}}, {{feedback.intern.admin.first_name}}</td>
+                                  <td>{{feedback.intern.department}}</td>
                                   <td>{{feedback.feedback}}</td>
                                  
                                       

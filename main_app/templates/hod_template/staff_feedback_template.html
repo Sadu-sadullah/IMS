@@ -28,7 +28,7 @@
                             {% for feedback in  feedbacks %}
                               <tr>
                                   <td>{{forloop.counter}}</td>
-                                  <td>{{feedback.staff}}</td>
+                                  <td>{{feedback.staff.admin.last_name}}, {{feedback.staff.admin.first_name}}</td>
                                   <td>{{feedback.staff.department}}</td>
                                   <td>{{feedback.feedback}}</td>
                                       
