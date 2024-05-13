@@ -24,7 +24,7 @@
                             <select name="task" class="form-control" id='task'>
                                 <option value="">----</option>
                                 {% for task in tasks  %}
-                                <option value="{{task.id}}">{{task.name}}</option>
+                                <option value="{{task.id}}">{{task.name}} ({{task.intern.admin.first_name}})</option>
                                 {% endfor %}
                             </select>
                         </div>

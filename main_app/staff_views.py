@@ -65,8 +65,9 @@ def staff_home(request):
 
 
 def staff_take_attendance(request):
-    staff = get_object_or_404(Staff, admin=request.user)
-    tasks = Task.objects.all()
+    current_user= request.user
+    interns = Intern.objects.filter(staff__admin=current_user)
+    tasks = Task.objects.filter(intern__in=interns)
     shifts = Shift.objects.all()
     context = {
         'tasks': tasks,
@@ -122,8 +123,9 @@ def save_attendance(request):
 
 
 def staff_update_attendance(request):
-    staff = get_object_or_404(Staff, admin=request.user)
-    tasks = Task.objects.all()
+    current_user= request.user
+    interns = Intern.objects.filter(staff__admin=current_user)
+    tasks = Task.objects.filter(intern__in=interns)
     shifts = Shift.objects.all()
     context = {
         'tasks': tasks,
