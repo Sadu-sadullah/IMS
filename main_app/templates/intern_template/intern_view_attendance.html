@@ -44,11 +44,11 @@
 
 
                         <div class="form-group">
-                            <label>Select Subject</label>
-                            <select  id="subject" class="form-control">
+                            <label>Select Task</label>
+                            <select  id="task" class="form-control">
                                 <option value="">----</option>
-                                {% for subject in subjects  %}
-                                <option value="{{subject.id}}">{{subject.name}} </option>
+                                {% for task in tasks  %}
+                                <option value="{{task.id}}">{{task.name}} </option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -91,11 +91,11 @@
 
        
         $("#fetch_attendance").click(function () {
-            var subject = $("#subject").val()
+            var task = $("#task").val()
             var start_date = $("#start_date").val()
             var end_date = $("#end_date").val()
-            if (subject.length  == 0 || end_date.length ==0 ||start_date.length == 0){
-                alert("Please Select Subject and Date Range");
+            if (task.length  == 0 || end_date.length ==0 ||start_date.length == 0){
+                alert("Please Select Task and Date Range");
                 return false;
             }
             $("#attendance_data").html(null)
@@ -103,7 +103,7 @@
                 url: "{% url 'intern_view_attendance' %}",
                 type: 'POST',
                 data: {
-                    subject: subject,
+                    task: task,
                     start_date: start_date,
                     end_date:end_date
                 }
